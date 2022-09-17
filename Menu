@@ -1,0 +1,160 @@
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
+import locale
+locale.setlocale(locale.LC_ALL, '')
+
+root = Tk()
+root.title('Menu')
+root.geometry('700x400')
+
+################################################################################################################################################
+
+def summit(event): 
+    bunbo1 = '' if (bunbo.get() ==0 or  soluong1.get()==0) else 'bún bò'
+    sobunbo = '' if (bunbo.get() ==0 or soluong1.get()==0) else soluong1.get()
+    phobo1 = '' if (phobo.get() ==0 or soluong2.get()==0) else 'phở bò'
+    sophobo = '' if (phobo.get() ==0 or soluong2.get()==0) else soluong2.get()
+    bunga1 = '' if (bunga.get() ==0 or soluong3.get()==0) else 'bún gà'
+    sobunga = '' if (bunga.get() ==0 or soluong3.get()==0) else soluong3.get()
+    buntron1 = '' if (buntron.get() ==0 or soluong4.get()==0) else 'bún trộn'
+    sobuntron = '' if (buntron.get() ==0 or soluong4.get()==0) else soluong4.get()
+    comrang1 = '' if (comrang.get() ==0 or soluong5.get()==0) else 'cơm rang'
+    socomrang = '' if (comrang.get() ==0 or soluong5.get()==0) else soluong5.get()
+    
+#     tien = soluong1.get()*bunbo.get()*50000 + soluong2.get*phobo.get()*40000+\
+#     soluong3.get()*bunga.get()*40000 + soluong4.get()*buntron.get()*50000 + \
+#     soluong5.get()*comrang.get()*55000
+    
+    messagebox.showinfo('Bạn đã chắc chăn với lựa chọn', f'''
+    Bạn đã chắc chắn lựa chọn: 
+        {sobunbo} {bunbo1} 
+        {sophobo} {phobo1} 
+        {sobunga} {bunga1} 
+        {sobuntron} {buntron1} 
+        {socomrang} {comrang1}''')
+
+frame3 = Frame(root, height = 500, width = 550,bd = 5, relief = RIDGE, bg = 'lightblue')
+frame3.pack()
+
+#######################################################################################################################################
+    
+frame1 = Frame(frame3, height = 400, width = 500, bd = 5, relief = RIDGE)
+label1 = Label(frame1, text = 'MENU', font = ('Helvetica', '20'), fg = 'Blue')
+label1.grid(rowspan = 1, column = 3)
+
+food = ['Bún bò - 40k', 'Phở bò - 35k', 'Bún gà - 35k', 'Bún trộn - 40k', 'Cơm rang - 50k']
+soluong = [i for i in range (1,21,1)]
+
+bunbo = IntVar()
+phobo = IntVar()
+bunga = IntVar()
+buntron = IntVar()
+comrang = IntVar()
+
+soluong1 = IntVar()
+soluong2 = IntVar()
+soluong3 = IntVar()
+soluong4 = IntVar()
+soluong5 = IntVar()
+
+checkbutton1= Checkbutton(frame1, text = 'Bún bò - 50k', onvalue = 1, offvalue=0, variable=bunbo)
+checkbutton1.grid(row = 3, column = 0)
+label1 = Label(frame1, text = 'Số lượng:')
+label1.grid(row = 3, column = 4)
+soluong_bunbo = ttk.Combobox(frame1, values = soluong, textvariable = soluong1, state = 'readonly', width = 8)
+soluong_bunbo.grid(row = 3, column = 5)
+
+checkbutton2= Checkbutton(frame1, text = 'Phở bò - 40k', onvalue = 1, offvalue=0, variable=phobo)
+checkbutton2.grid(row = 4, column = 0)
+label2 = Label(frame1, text = 'Số lượng:')
+label2.grid(row = 4, column = 4)
+soluong_phobo = ttk.Combobox(frame1, values = soluong, textvariable = soluong2, state = 'readonly', width = 8)
+soluong_phobo.grid(row = 4, column = 5)
+
+checkbutton3= Checkbutton(frame1, text = 'Bún gà - 40k', onvalue = 1, offvalue=0, variable=bunga)
+checkbutton3.grid(row = 5, column = 0)
+label3 = Label(frame1, text = 'Số lượng:')
+label3.grid(row = 5, column = 4)
+soluong_bunga = ttk.Combobox(frame1, values = soluong, textvariable = soluong3, state = 'readonly',width = 8)
+soluong_bunga.grid(row = 5, column = 5)
+
+checkbutton4= Checkbutton(frame1, text = 'Bún trộn - 50k', onvalue = 1, offvalue=0, variable=buntron)
+checkbutton4.grid(row = 6, column = 0)
+label4 = Label(frame1, text = 'Số lượng:')
+label4.grid(row = 6, column = 4)
+soluong_buntron = ttk.Combobox(frame1, values = soluong, textvariable = soluong4, state = 'readonly',width = 8)
+soluong_buntron.grid(row = 6, column = 5)
+
+checkbutton5= Checkbutton(frame1, text = 'Cơm rang - 55k', onvalue = 1, offvalue=0, variable=comrang)
+checkbutton5.grid(row = 7, column = 0)
+label5 = Label(frame1, text = 'Số lượng:')
+label5.grid(row = 7, column = 4)
+soluong_comrang = ttk.Combobox(frame1, values = soluong, textvariable = soluong5, state = 'readonly',width = 8)
+soluong_comrang.grid(row = 7, column = 5)
+
+button = Button(frame1, text = 'Summit', bg = 'lightblue')
+button.bind('<Button>', summit)
+button.grid(rowspan = 9, column = 3, sticky = 'NSEW')
+
+frame1.pack()
+
+
+
+##################################################################################################################################
+
+
+
+frame2 = Frame(frame3, height = 400, width = 500, bd = 5, relief = RIDGE)
+label2 = Label(frame2, text = 'PHƯƠNG THỨC THANH TOÁN', font = ('Helvetica', '15'), fg = 'Blue' )
+label2.grid(rowspan = 1, column = 5, sticky = 'NSEW')
+
+
+def selection(): 
+    thanhtoan = 'tiền mặt' if var1.get() == 1 else 'chuyển khoản'
+    messagebox.showinfo('Thanh toán', f'Bạn chọn thanh toán bằng {thanhtoan}')
+
+def thanhtoan(): 
+    tien = soluong1.get()*bunbo.get()*50000 + soluong2.get()*phobo.get()*40000+\
+    soluong3.get()*bunga.get()*40000 + soluong4.get()*buntron.get()*50000 + \
+    soluong5.get()*comrang.get()*55000
+    
+    if var1.get() == 1:
+        tien =  ('{:,}'.format(tien))
+        entry1.delete(0, END)
+        entry1.insert(0, (str(tien)+ ' đồng'))
+        
+    elif var1.get() ==2: 
+        tien1 = tien*0.95
+        tien1 = ('{:,}'.format(tien1))
+        entry1.delete(0, END)
+        entry1.insert(END, (str(tien1)+ ' đồng'))
+        
+    
+var1 = IntVar()
+
+thanhtoan1 = Radiobutton(frame2, text = 'Tiền mặt',font = ('Helvetica', '10'), value = 1, variable = var1,command = selection)
+thanhtoan1.grid(rowspan = 3, column = 1, sticky = 'NSEW')
+
+thanhtoan2 = Radiobutton(frame2, text = 'Chuyển khoản (discount 5%)',font = ('Helvetica', '10'), value = 2, variable = var1, command = selection)
+thanhtoan2.grid(row = 3, column = 6)
+
+label3 = Label(frame2, text = 'Tổng tiền:          ', font = ('Helvetica', '12'), fg = 'red')
+label3.grid(row = 7, column = 4)
+
+label4 = Label(frame2, text = ' ', font = ('Helvetica', '10'))
+label4.grid(row = 6, column = 4)
+
+entry1 = Entry(frame2, text = '',font = ('Helvetica', '12'), bg = 'yellow', width = 15)
+entry1.grid(row = 7, column = 5)
+
+
+
+button2 = Button(frame2, text = 'Thanh toán', command = thanhtoan, bg = 'lightblue')
+button2.grid(row = 5, column = 5, sticky = 'NSEW')
+
+frame2.pack()
+
+##################################################################################################################################
+
+root.mainloop()
